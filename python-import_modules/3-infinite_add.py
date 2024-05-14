@@ -1,7 +1,8 @@
 #!/usr/bin/python3
-import sys
-
 if __name__ == "__main__":
-    args = sys.argv[1:]  # excluding script name
-    result = sum(int(arg) for arg in args)
-    print(result)
+    import sys
+    sum = 0
+    count = len(sys.argv) - 1
+    for i in range(count):
+        sum += int(sys.argv[i + 1])
+    print("{}".format(sum))
