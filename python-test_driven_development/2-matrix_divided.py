@@ -1,31 +1,23 @@
 #!/usr/bin/python3
-""" This module contains a function that divides all elements of a matrix
-"""
-
-
 def matrix_divided(matrix, div):
-    """ This function divides all elements of a matrix
-    """
-
-    if type(matrix) is not list:
-        raise TypeError("mtrix must be mtrix (list/lists) of integers/floats")
-
-    if type(div) not in [int, float]:
+    errorMessage = "matrix must be a matrix (list of lists) of integers/floats"
+    if not matrix:
+        raise TypeError(errorMessage)
+    if not isinstance(matrix, list):
+        raise TypeError(errorMessage)
+    for lists in matrix:
+        if not isinstance(lists, list):
+            raise TypeError(errorMessage)
+        for item in lists:
+            if not isinstance(item, int) and not isinstance(item, float):
+                raise TypeError(errorMessage)
+    for lists in matrix:
+        if len(lists) == 0:
+            raise TypeError(errorMessage)
+    if not isinstance(div, int) and not isinstance(div, float):
         raise TypeError("div must be a number")
-
+    if not all(len(lists) == len(matrix[0]) for lists in matrix):
+        raise TypeError("Each row of the matrix must have the same size")
     if div == 0:
         raise ZeroDivisionError("division by zero")
-
-    for i in matrix:
-        if type(i) is not list:
-            raise TypeError("mtrx must mtrx (list/lists) of integers/floats")
-
-        if len(i) != len(matrix[0]):
-            raise TypeError("Each row of the matrix must have the same size")
-
-        for j in i:
-            if type(j) not in [int, float]:
-
-                raise TypeError("mtrx must mtrx (lists/lists) integers/floats")
-
-    return [[round(j / div, 2) for j in i] for i in matrix]
+    return [[round(item / div, 2) for item in lists] for lists in matrix]
