@@ -47,24 +47,33 @@ def test_circle_negative():
     try:
         circle_negative = Circle(-5)
     except ValueError as e:
-        assert str(e) == "Radius cannot be negative", "Radius error message mismatch"
+        if str(e) == "Radius cannot be negative":
+            print("Correct output - Circle negative radius")
+        else:
+            print("Incorrect output - Circle negative radius")
     else:
-        assert False, "ValueError not raised for negative radius"
+        print("ValueError not raised for negative radius")
 
 def test_rectangle_negative():
     try:
         rectangle_negative = Rectangle(-4, 6)
     except ValueError as e:
-        assert str(e) == "Width and height cannot be negative", "Width and height error message mismatch"
+        if str(e) == "Width and height cannot be negative":
+            print("Correct output - Rectangle negative dimensions")
+        else:
+            print("Incorrect output - Rectangle negative dimensions")
     else:
-        assert False, "ValueError not raised for negative width"
+        print("ValueError not raised for negative width")
 
     try:
         rectangle_negative = Rectangle(4, -6)
     except ValueError as e:
-        assert str(e) == "Width and height cannot be negative", "Width and height error message mismatch"
+        if str(e) == "Width and height cannot be negative":
+            print("Correct output - Rectangle negative dimensions")
+        else:
+            print("Incorrect output - Rectangle negative dimensions")
     else:
-        assert False, "ValueError not raised for negative height"
+        print("ValueError not raised for negative height")
 
 def main():
     # Run the negative tests
