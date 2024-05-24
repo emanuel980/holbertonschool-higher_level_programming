@@ -1,0 +1,31 @@
+def test_circle_negative():
+    try:
+        circle_negative = Circle(-5)
+    except ValueError as e:
+        if str(e) == "Radius cannot be negative":
+            print("Correct output - Circle negative radius")
+        else:
+            print("Incorrect output - Circle negative radius")
+    else:
+        print("ValueError not raised for negative radius")
+
+def test_rectangle_negative():
+    try:
+        rectangle_negative = Rectangle(-4, 6)
+    except ValueError as e:
+        if str(e) == "Width and height cannot be negative":
+            print("Correct output - Rectangle negative dimensions")
+        else:
+            print("Incorrect output - Rectangle negative dimensions")
+    else:
+        print("ValueError not raised for negative width")
+
+    try:
+        rectangle_negative = Rectangle(4, -6)
+    except ValueError as e:
+        if str(e) == "Width and height cannot be negative":
+            print("Correct output - Rectangle negative dimensions")
+        else:
+            print("Incorrect output - Rectangle negative dimensions")
+    else:
+        print("ValueError not raised for negative height")
