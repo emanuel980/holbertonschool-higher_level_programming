@@ -1,15 +1,18 @@
 #!/usr/bin/python3
-"""print all states with a name starting with N"""
+""" Write a script that list all states with the same name starting with N """
 
-
-import MySQLdb as sql
+import MySQLdb
 from sys import argv
 
-if __name__ == '__main__':
-    db = sql.connect(host="localhost",
-                     port=3306, user=argv[1], passwd=argv[2], db=argv[3])
-    cur = db.cursor()
-    cur.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%'")
-    rows = cur.fetchall()
-    for row in rows:
-        print(row)
+if __name__ == "__main__":
+    """ establishes a connection to the database """
+    db = MySQLdb.connect(host="localhost", port=3306, user=argv[1],
+                         passwd=argv[2], db=argv[3], charset="utf8")
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
+    records = cursor.fetchall()
+    for row in records:
+        if row[1][0] == 'N':
+            print(row)
+    cursor.close()
+    db.close()
