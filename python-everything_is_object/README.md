@@ -1,1 +1,1 @@
-Not empty
+Python - Everything is a object
